@@ -12,17 +12,11 @@ Work in progress boilerplate for a website with Rust/Axum/SQLx backend and HTMX 
 
 ## Running
 
-1. Declare the database URL:
+TODO
 
-    ```
-    export DATABASE_URL="sqlite:db.sqlite"
-    ```
-
-1. Run the backend:
-
-    ```
-    cargo run
-    ```
+```
+cargo run
+```
 
 ## Developing
 
@@ -40,6 +34,18 @@ Work in progress boilerplate for a website with Rust/Axum/SQLx backend and HTMX 
     cd backend
     sqlx migrate add -r <DESCRIPTION>
     ```
+
+TODO: preparation for SQLx offline mode
+
+```
+sqlx database create
+sqlx migrate run
+cargo run
+```
+
+```
+sqlx database drop
+```
 
 ## Contributing
 

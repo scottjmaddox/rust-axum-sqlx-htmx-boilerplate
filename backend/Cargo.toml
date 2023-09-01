@@ -9,10 +9,19 @@ publish = false
 [dependencies]
 axum = "0.6.20"
 color-eyre = "0.6.2"
+minijinja = { version = "1.0.7", features = ["builtins", "loader"] }
+minijinja-autoreload = "1.0.7"
+serde = { version = "1.0.188", features = ["derive"] }
 sqlx = { version = "0.7", features = [
     "runtime-tokio",
     "sqlite",
     "macros",
     "migrate",
+    "time",
 ] }
+time = { version = "0.3.28", features = ["serde"] }
 tokio = { version = "1.32.0", features = ["macros", "rt-multi-thread"] }
+tower = "0.4.13"
+tower-http = { version = "0.4.3", features = ["trace"] }
+tracing = "0.1.37"
+tracing-subscriber = "0.3.17"

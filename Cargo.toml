@@ -1,4 +1,6 @@
 [workspace]
-members = [
-    "backend",
-]
+resolver = "2"
+members = ["backend"]
+
+[profile.dev.package.sqlx-macros]
+opt-level = 3
