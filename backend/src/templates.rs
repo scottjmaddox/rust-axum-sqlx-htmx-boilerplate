@@ -55,6 +55,14 @@ impl Templates {
         .map(Html)
     }
 
+    pub fn render_contact_html(
+        &self,
+        contact: &models::Contact,
+    ) -> Result<Html<String>, Error> {
+        self.render("contact.html.jinja", minijinja::context!(contact))
+            .map(Html)
+    }
+
     pub fn render_not_found_html(&self) -> Result<Html<String>, Error> {
         self.render("not_found.html.jinja", minijinja::context!())
             .map(Html)

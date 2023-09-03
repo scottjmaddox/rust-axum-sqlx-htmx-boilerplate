@@ -65,6 +65,20 @@ impl Database {
         .map_err(Error)?;
         Ok(())
     }
+
+    pub async fn get_contact(
+        &self,
+        contact_id: i64,
+    ) -> Result<Option<models::Contact>, Error> {
+        sqlx::query_as!(
+            models::Contact,
+            "SELECT * FROM contacts WHERE id = $1",
+            contact_id
+        )
+        .fetch_optional(&self.0)
+        .await
+        .map_err(Error)
+    }
 }
 
 #[derive(Debug, thiserror::Error)]

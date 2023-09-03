@@ -3,7 +3,7 @@ use crate::database::Database;
 use crate::models;
 use crate::templates;
 use crate::templates::Templates;
-use axum::extract::{Form, Query, State};
+use axum::extract::{Form, Path, Query, State};
 use axum::response::{Html, IntoResponse, Redirect, Response};
 use axum::routing::{get, Router};
 use axum_macros::{debug_handler, FromRef};
@@ -13,6 +13,7 @@ pub fn router(db: Database, templates: Templates) -> axum::Router {
         .route("/", get(Redirect::to("/contacts")))
         .route("/contacts", get(get_contacts))
         .route("/contacts/new", get(get_new_contact).post(post_new_contact))
+        .route("/contacts/:id", get(get_contact))
         .fallback(not_found)
         .with_state(SharedState { db, templates })
 }
@@ -78,6 +79,18 @@ async fn post_new_contact(
             .templates
             .render_new_contact_html(new_contact, errors)?
             .into_response()),
+    }
+}
+
+#[debug_handler]
+async fn get_contact(
+    State(state): State<SharedState>,
+    Path(id): Path<i64>,
+) -> Result<Html<String>, Error> {
+    if let Some(contact) = state.db.get_contact(id).await? {
+        Ok(state.templates.render_contact_html(&contact)?)
+    } else {
+        Ok(state.templates.render_not_found_html()?)
     }
 }
 

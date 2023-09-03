@@ -1,0 +1,21 @@
+{% extends 'layout.html.jinja' %}
+
+{% block title %}{{contact.full_name}}{% endblock %}
+
+{% block content %}
+
+<section class="section">
+    <h1 class="title">{{contact.full_name}}</h1>
+
+    <div class="content">
+        <div><strong>Phone:</strong> {{contact.phone}}</div>
+        <div><strong>Email:</strong> {{contact.email}}</div>
+    </div>
+
+    <div class="buttons">
+        <a class="button is-link" href="/contacts/{{contact.id}}/edit">Edit</a>
+        <a class="button is-link is-light" href="/contacts">Back</a>
+    </div>
+</section>
+
+{% endblock %} (2)
