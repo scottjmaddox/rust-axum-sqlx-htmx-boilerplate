@@ -1,1 +1,1 @@
-DROP TABLE tasks;
+DROP TABLE IF EXISTS contacts;

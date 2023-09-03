@@ -2,21 +2,30 @@
 
 Work in progress boilerplate for a website with Rust/Axum/SQLx backend and HTMX frontend.
 
+The example application is based on the one in https://hypermedia.systems
+
 ## Table of Contents
 
 - [Running](#running)
 - [Developing](#developing)
-    - [Adding Migrations](#adding-migrations)
 - [Contributing](#contributing)
 - [License](#license)
 
 ## Running
 
-TODO
+1. [Install `rustup`](https://www.rust-lang.org/tools/install).
 
-```
-cargo run
-```
+2. Use `rustup` to install the latest stable Rust toolchain:
+
+    ```
+    rustup update stable
+    ```
+
+1. Use `cargo` to build and run the server:
+
+    ```
+    cargo run
+    ```
 
 ## Developing
 
@@ -31,21 +40,32 @@ cargo run
 1. Use it to create a new migration script:
 
     ```
-    cd backend
     sqlx migrate add -r <DESCRIPTION>
     ```
 
-TODO: preparation for SQLx offline mode
+1. Migrate the database:
 
-```
-sqlx database create
-sqlx migrate run
-cargo run
-```
+    ```
+    sqlx migrate run
+    ```
 
-```
-sqlx database drop
-```
+### Saving SQLx `query!` metadata to enable building without access to the database
+
+1. Recreate and migrate the database:
+
+    ```
+    sqlx database drop -y && sqlx database create && sqlx migrate run
+    ```
+
+1. Save query metadata for offline usage:
+
+    ```
+    cargo sqlx prepare --workspace
+    ```
+
+If `DATABASE_URL` is defined, SQLx will continue building against a database.
+To force building in offline mode, set the `SQLX_OFFLINE` environment variable to `true`.
+If you want to make this the default, add it to your `.env` file.
 
 ## Contributing
 

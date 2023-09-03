@@ -1,0 +1,49 @@
+{% extends 'layout.html.jinja' %}
+
+{% block title %}Contacts{% endblock %}
+
+{% block content %}
+
+<form action="/contacts" method="get" class="tool-bar">
+    <div class="field has-addons">
+        <div class="control is-expanded">
+            <input id="search" class="input" type="search"
+                placeholder="Find a contact" name="q"
+                value="{{ search.q or '' }}">
+        </div>
+        <div class="control">
+            <button class="button is-info" type="submit">
+                Search
+            </button>
+        </div>
+    </div>
+</form>
+
+<table class="table is-hoverable is-fullwidth">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for contact in contacts %}
+        <tr>
+            <td>{{ contact.full_name }}</td>
+            <td>{{ contact.phone }}</td>
+            <td>{{ contact.email }}</td>
+            <td><a href="/contacts/{{ contact.id }}/edit">Edit</a>
+                <a href="/contacts/{{ contact.id }}">View</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<p>
+    <a href="/contacts/new">Add Contact</a>
+</p>
+
+{% endblock %} (2)

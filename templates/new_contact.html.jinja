@@ -1,0 +1,54 @@
+{% extends 'layout.html.jinja' %}
+
+{% block title %}Contacts{% endblock %}
+
+{% block content %}
+<form action="/contacts/new" method="post">
+    <fieldset>
+        <legend class="subtitle is-4">New Contact</legend>
+        <div class="field">
+            <label class="label" for="full_name">Full Name</label>
+            <div class="control">
+                <input class="input" name="full_name" id="full_name" type="text"
+                    placeholder="Full Name"
+                    value="{{ new_contact.full_name or '' }}">
+            </div>
+            {% if errors.full_name %}
+            <p class="help is-danger">{{ errors.full_name }}</p>
+            {% endif %}
+        </div>
+
+        <div class="field">
+            <label class="label" for="email">Email</label>
+            <div class="control">
+                <input class="input" name="email" id="email" type="email"
+                    placeholder="Email" value="{{ new_contact.email or '' }}">
+            </div>
+            {% if errors.email %}
+            <p class="help is-danger">{{ errors.email }}</p>
+            {% endif %}
+        </div>
+
+        <div class="field">
+            <label class="label" for="phone">Phone</label>
+            <div class="control">
+                <input class="input" name="phone" id="phone" type="text"
+                    placeholder="Phone" value="{{ new_contact.phone or '' }}">
+            </div>
+            {% if errors.phone %}
+            <p class="help is-danger">{{ errors.phone }}</p>
+            {% endif %}
+        </div>
+
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-link">Save</button>
+            </div>
+            <div class="control">
+                <a class="button is-link is-light" href="/contacts">Back</a>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+{% endblock %} (2)

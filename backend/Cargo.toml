@@ -8,9 +8,11 @@ publish = false
 
 [dependencies]
 axum = "0.6.20"
+axum-macros = "0.3.8"
 color-eyre = "0.6.2"
 minijinja = { version = "1.0.7", features = ["builtins", "loader"] }
 minijinja-autoreload = "1.0.7"
+regex = "1.9.5"
 serde = { version = "1.0.188", features = ["derive"] }
 sqlx = { version = "0.7", features = [
     "runtime-tokio",
@@ -19,6 +21,7 @@ sqlx = { version = "0.7", features = [
     "migrate",
     "time",
 ] }
+thiserror = "1.0.48"
 time = { version = "0.3.28", features = ["serde"] }
 tokio = { version = "1.32.0", features = ["macros", "rt-multi-thread"] }
 tower = "0.4.13"

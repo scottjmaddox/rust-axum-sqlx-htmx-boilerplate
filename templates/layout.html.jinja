@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}{% endblock %} - Rust/Axum/SQLx/HTMX
+    </title>
+    <meta name="description" content="rust-axum-sqlx-htmx-boilerplate">
+    <meta name="author" content="Scott J Maddox">
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+    <script
+        src="https://unpkg.com/htmx.org@1.9.5/dist/ext/loading-states.js"></script>
+</head>
+
+<body hx-ext="loading-states">
+    <section class="hero">
+        <div class="hero-body">
+            <h1 class="title">Contacts</h1>
+            <h2 class="subtitle">An Example Rust/Axum/SQLx/HTMX Application</h2>
+        </div>
+    </section>
+    <div id="content" class="container">{% block content %}{% endblock %}</div>
+</body>
+
+</html>
